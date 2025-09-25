@@ -67,10 +67,10 @@ class _StackedPieDemoState extends State<StackedPieDemo> {
         sections: [
           createSectionData(1, 60, 90, 10),
           createSectionData(2, 60, 70, 30),
-          createSectionData(3, 60, 100, 0),
+          createSectionData(3, 60, 100, 00),
           createSectionData(4, 30, 90, 10),
           createSectionData(5, 30, 60, 40),
-          createSectionData(6, 30, 100, 0),
+          createSectionData(6, 30, 50, 50),
           createSectionData(7, 30, 10, 90),
           createSectionData(8, 30, 60, 40),
           createSectionData(9, 30, 0, 100),
