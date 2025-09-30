@@ -37,6 +37,7 @@ class _StackedPieDemoState extends State<StackedPieDemo> {
           ),
         ],
         radius: radius,
+        sectionOffset: _touchedIndex == index ? 16 : 0,
       );
 
   @override

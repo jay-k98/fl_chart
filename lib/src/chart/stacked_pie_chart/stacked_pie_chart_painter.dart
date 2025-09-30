@@ -155,12 +155,20 @@ class StackedPieChartPainter extends BaseChartPainter<StackedPieChartData> {
 
       if (section.totalValues == 0) continue;
 
+      // Compute section center angle for outward translation
+      final sectionCenterAngle = tempAngle + (sectionDegree / 2);
+      final sectionOffset = section.sectionOffset;
+      final offsetDx =
+          math.cos(Utils().radians(sectionCenterAngle)) * sectionOffset;
+      final offsetDy =
+          math.sin(Utils().radians(sectionCenterAngle)) * sectionOffset;
+
       final sectionPath = generateSectionPath(
         section,
         data.sectionsSpace,
         tempAngle,
         sectionDegree,
-        center,
+        center.translate(offsetDx, offsetDy),
         centerRadius,
       );
 
@@ -174,7 +182,7 @@ class StackedPieChartPainter extends BaseChartPainter<StackedPieChartData> {
         sectionDegree,
         centerRadius,
         tempAngle,
-        center,
+        center.translate(offsetDx, offsetDy),
       );
       canvasWrapper.restore();
 
@@ -422,8 +430,14 @@ class StackedPieChartPainter extends BaseChartPainter<StackedPieChartData> {
         }
       }
 
+      final sectionOffset = section.sectionOffset;
+      final offsetDx =
+          math.cos(Utils().radians(sectionCenterAngle)) * sectionOffset;
+      final offsetDy =
+          math.sin(Utils().radians(sectionCenterAngle)) * sectionOffset;
+
       Offset sectionCenter(double percentageOffset) =>
-          center +
+          center.translate(offsetDx, offsetDy) +
           Offset(
             math.cos(Utils().radians(sectionCenterAngle)) *
                 (centerRadius + (section.radius * percentageOffset)),
@@ -519,12 +533,20 @@ class StackedPieChartPainter extends BaseChartPainter<StackedPieChartData> {
         break;
       }
 
+      // Account for outward offset when hit-testing
+      final sectionCenterAngle = tempAngle + (sectionAngle / 2);
+      final sectionOffset = section.sectionOffset;
+      final offsetDx =
+          math.cos(Utils().radians(sectionCenterAngle)) * sectionOffset;
+      final offsetDy =
+          math.sin(Utils().radians(sectionCenterAngle)) * sectionOffset;
+
       final sectionPath = generateSectionPath(
         section,
         data.sectionsSpace,
         tempAngle,
         sectionAngle,
-        center,
+        center.translate(offsetDx, offsetDy),
         centerRadius,
       );
 

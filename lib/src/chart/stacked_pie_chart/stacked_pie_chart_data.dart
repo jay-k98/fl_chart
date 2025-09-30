@@ -131,6 +131,7 @@ class StackedPieChartSectionData with EquatableMixin {
     double? weight,
     List<StackedPieChartSegmentData>? segments,
     double? radius,
+    double? sectionOffset,
     bool? showTitle,
     String? title,
     this.titleStyle,
@@ -142,6 +143,7 @@ class StackedPieChartSectionData with EquatableMixin {
   })  : weight = weight ?? 10,
         segments = segments ?? const [],
         radius = radius ?? 40,
+        sectionOffset = sectionOffset ?? 0,
         showTitle = showTitle ?? true,
         title = title ?? '',
         borderSide = borderSide ?? const BorderSide(width: 0),
@@ -152,6 +154,10 @@ class StackedPieChartSectionData with EquatableMixin {
   final double weight;
   final List<StackedPieChartSegmentData> segments;
   final double radius;
+
+  /// Additional radial translation applied to the whole section (in logical pixels).
+  /// Positive values move the section outward along its center angle.
+  final double sectionOffset;
   final bool showTitle;
   final TextStyle? titleStyle;
   final String title;
@@ -170,6 +176,7 @@ class StackedPieChartSectionData with EquatableMixin {
         weight: lerpDouble(a.weight, b.weight, t),
         segments: lerpStackedPieChartSegmentDataList(a.segments, b.segments, t),
         radius: lerpDouble(a.radius, b.radius, t),
+        sectionOffset: lerpDouble(a.sectionOffset, b.sectionOffset, t),
         showTitle: b.showTitle,
         titleStyle: TextStyle.lerp(a.titleStyle, b.titleStyle, t),
         title: b.title,
@@ -194,6 +201,7 @@ class StackedPieChartSectionData with EquatableMixin {
         weight,
         segments,
         radius,
+        sectionOffset,
         showTitle,
         titleStyle,
         title,
