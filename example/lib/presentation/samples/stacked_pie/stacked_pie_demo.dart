@@ -34,6 +34,11 @@ class _StackedPieDemoState extends State<StackedPieDemo> {
           StackedPieChartSegmentData(
             value: b,
             color: _getSegmentColor(index, Colors.redAccent),
+            pattern: DotPattern(
+              color: Colors.black.withValues(alpha: 0.6),
+              spacing: 6,
+              dotRadius: 1.5,
+            ),
           ),
         ],
         radius: radius,

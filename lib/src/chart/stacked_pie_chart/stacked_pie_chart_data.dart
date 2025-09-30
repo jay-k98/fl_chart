@@ -221,22 +221,27 @@ class StackedPieChartSegmentData {
     double? value,
     Color? color,
     this.gradient,
+    DotPattern? pattern,
   })  : value = value ?? 10,
-        color = color ?? Colors.cyan;
+        color = color ?? Colors.cyan,
+        pattern = pattern ?? const DotPattern.disabled();
 
   final double value;
   final Color color;
   final Gradient? gradient;
+  final DotPattern pattern;
 
   StackedPieChartSegmentData copyWith({
     double? value,
     Color? color,
     Gradient? gradient,
+    DotPattern? pattern,
   }) {
     return StackedPieChartSegmentData(
       value: value ?? this.value,
       color: color ?? this.color,
       gradient: gradient ?? this.gradient,
+      pattern: pattern ?? this.pattern,
     );
   }
 
@@ -249,6 +254,7 @@ class StackedPieChartSegmentData {
         value: lerpDouble(a.value, b.value, t),
         color: Color.lerp(a.color, b.color, t),
         gradient: Gradient.lerp(a.gradient, b.gradient, t),
+        pattern: DotPattern.lerp(a.pattern, b.pattern, t),
       );
 
   /// Used for equality check, see [EquatableMixin].
@@ -256,6 +262,7 @@ class StackedPieChartSegmentData {
         value,
         color,
         gradient,
+        pattern,
       ];
 }
 
