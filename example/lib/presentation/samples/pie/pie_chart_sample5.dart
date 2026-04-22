@@ -70,6 +70,11 @@ class _PieChartSample5State extends State<PieChartSample5> {
                 fromRadius: 0,
                 toRadius: radius,
                 color: AppColors.contentColorBlue,
+                pattern: DotPattern(
+                  color: Colors.white.withValues(alpha: 0.3),
+                  spacing: 8,
+                  dotRadius: 1.5,
+                ),
               ),
             ],
           ),
@@ -103,6 +108,11 @@ class _PieChartSample5State extends State<PieChartSample5> {
                 fromRadius: 0,
                 toRadius: radius,
                 color: AppColors.contentColorPurple,
+                pattern: DotPattern(
+                  color: Colors.white.withValues(alpha: 0.3),
+                  spacing: 6,
+                  dotRadius: 1,
+                ),
               ),
             ],
           ),

@@ -369,8 +369,10 @@ class PieChartStackSegmentData with EquatableMixin {
     required this.toRadius,
     Color? color,
     this.gradient,
+    DotPattern? pattern,
   })  : fromRadius = fromRadius ?? 0,
-        color = color ?? Colors.purple;
+        color = color ?? Colors.purple,
+        pattern = pattern ?? const DotPattern.disabled();
 
   /// The start radius of this segment (distance from center of the section).
   /// Clamped to [0, sectionRadius] at render time.
@@ -386,6 +388,9 @@ class PieChartStackSegmentData with EquatableMixin {
   /// Defines the gradient of segment. If specified, overrides the color setting.
   final Gradient? gradient;
 
+  /// Optional dot pattern overlay for accessibility and contrast.
+  final DotPattern pattern;
+
   /// Copies current [PieChartStackSegmentData] to a new [PieChartStackSegmentData],
   /// and replaces provided values.
   PieChartStackSegmentData copyWith({
@@ -393,12 +398,14 @@ class PieChartStackSegmentData with EquatableMixin {
     double? toRadius,
     Color? color,
     Gradient? gradient,
+    DotPattern? pattern,
   }) =>
       PieChartStackSegmentData(
         fromRadius: fromRadius ?? this.fromRadius,
         toRadius: toRadius ?? this.toRadius,
         color: color ?? this.color,
         gradient: gradient ?? this.gradient,
+        pattern: pattern ?? this.pattern,
       );
 
   /// Lerps a [PieChartStackSegmentData] based on [t] value, check [Tween.lerp].
@@ -412,6 +419,7 @@ class PieChartStackSegmentData with EquatableMixin {
         toRadius: lerpDouble(a.toRadius, b.toRadius, t)!,
         color: lerpColor(a.color, b.color, t),
         gradient: Gradient.lerp(a.gradient, b.gradient, t),
+        pattern: DotPattern.lerp(a.pattern, b.pattern, t),
       );
 
   /// Used for equality check, see [EquatableMixin].
@@ -421,6 +429,7 @@ class PieChartStackSegmentData with EquatableMixin {
         toRadius,
         color,
         gradient,
+        pattern,
       ];
 }
 
